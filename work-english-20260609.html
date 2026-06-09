@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work English · 2026-06-09</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f13;
+    color: #e8e6f0;
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+  }
+  .container { max-width: 560px; margin: 0 auto; }
+  .header { margin-bottom: 32px; }
+  .header .date { font-size: 12px; color: #6b6880; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 22px; font-weight: 600; color: #f0eeff; letter-spacing: -0.02em; }
+  .header .theme-badge { display: inline-block; margin-top: 10px; padding: 4px 10px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 20px; font-size: 12px; color: #a78bfa; letter-spacing: 0.03em; }
+  .card { background: #17161e; border: 1px solid #2a2836; border-radius: 18px; padding: 24px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent); }
+  .card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6880; margin-bottom: 14px; }
+  .word-main { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .word { font-size: 32px; font-weight: 700; color: #f0eeff; letter-spacing: -0.03em; }
+  .pronunciation { font-size: 14px; color: #6b6880; font-style: italic; }
+  .word-zh { font-size: 13px; color: #a78bfa; margin-bottom: 14px; margin-top: 2px; }
+  .definition { font-size: 14px; color: #b8b4cc; line-height: 1.6; margin-bottom: 16px; padding: 12px 14px; background: rgba(255,255,255,0.03); border-radius: 10px; border-left: 2px solid rgba(139,92,246,0.4); }
+  .examples { display: flex; flex-direction: column; gap: 8px; }
+  .example { font-size: 13px; color: #9d99b3; line-height: 1.6; padding-left: 14px; position: relative; }
+  .example::before { content: '"'; position: absolute; left: 0; color: #4a4660; font-size: 16px; line-height: 1.4; }
+  .highlight { color: #c4b5fd; font-style: italic; }
+  .pattern-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #1f1d2a; }
+  .pattern-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .pattern-template { font-size: 16px; font-weight: 600; color: #e0dbf5; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .pattern-context { display: inline-block; font-size: 11px; color: #7c6fa0; background: rgba(124,111,160,0.1); border-radius: 6px; padding: 2px 8px; margin-bottom: 10px; }
+  .pattern-zh { font-size: 12px; color: #6b6880; margin-bottom: 10px; }
+  .scenario-text { font-size: 14px; color: #b8b4cc; line-height: 1.8; font-style: italic; }
+  .word-mark { color: #c4b5fd; font-style: normal; font-weight: 600; background: rgba(196,181,253,0.1); border-radius: 4px; padding: 0 3px; }
+  .pattern-mark { color: #86efac; font-style: normal; background: rgba(134,239,172,0.08); border-radius: 4px; padding: 0 3px; }
+  .tip-text { font-size: 14px; color: #b8b4cc; line-height: 1.7; }
+  .tip-icon { font-size: 20px; margin-bottom: 10px; display: block; }
+  .card.word-card::after { content: ''; position: absolute; top: -60px; right: -60px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%); pointer-events: none; }
+  .day-badge { font-size: 11px; color: #6b6880; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="date">Tuesday · June 9, 2026</div>
+    <h1>Work English</h1>
+    <span class="theme-badge">Async Communication</span>
+    <div class="day-badge">Day 73</div>
+  </div>
+
+  <!-- Word of the Day -->
+  <div class="card word-card">
+    <div class="card-label">Word of the Day</div>
+    <div class="word-main">
+      <span class="word">alignment</span>
+      <span class="pronunciation">/əˈlaɪn.mənt/</span>
+    </div>
+    <div class="word-zh">n. 对齐；一致；达成共识</div>
+    <div class="definition">In a work context, "alignment" means that everyone on a team shares the same understanding of goals, priorities, or decisions. It's one of the most common words in async communication — used when you want to confirm that people are on the same page before moving forward.</div>
+    <div class="examples">
+      <div class="example">Just want to make sure we have <span class="highlight">alignment</span> on the scope before I start building — can you confirm the v1 cut?</div>
+      <div class="example">After the async thread, I think we're in <span class="highlight">alignment</span> on the approach. I'll go ahead and update the spec.</div>
+    </div>
+  </div>
+
+  <!-- Sentence Patterns -->
+  <div class="card">
+    <div class="card-label">Sentence Patterns</div>
+
+    <div class="pattern-item">
+      <div class="pattern-template">"Just to make sure we're aligned — ___."</div>
+      <span class="pattern-context">确认共识 · Slack / 文档评论 · 会前同步</span>
+      <div class="pattern-zh">只是想确认一下我们的理解一致——……（在推进前核对认知）</div>
+      <div class="examples">
+        <div class="example">Just to make sure we're aligned — the goal for this sprint is to ship the onboarding redesign, not the notification system, right?</div>
+        <div class="example">Just to make sure we're aligned — you're expecting a full write-up by Thursday, not just a rough outline?</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-template">"I'll leave a comment here so we have a record of ___."</div>
+      <span class="pattern-context">异步协作 · 文档 / PR / 设计稿</span>
+      <div class="pattern-zh">我在这里留个评论，这样我们有……的记录（异步留痕，方便后续追溯）</div>
+      <div class="examples">
+        <div class="example">I'll leave a comment here so we have a record of the decision — we're going with the simplified flow for now and revisiting post-launch.</div>
+        <div class="example">I'll leave a comment here so we have a record of what was discussed in the call — easier than digging through Slack later.</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-template">"No need to jump on a call — here's the context: ___."</div>
+      <span class="pattern-context">异步优先文化 · Slack 消息 · 减少会议</span>
+      <div class="pattern-zh">不用开会——背景是这样的：……（主动提供上下文，避免不必要的同步会议）</div>
+      <div class="examples">
+        <div class="example">No need to jump on a call — here's the context: the API change affects only the mobile client, and the fix is already in review.</div>
+        <div class="example">No need to jump on a call — here's the context: I've already synced with the design team and they're good with the new layout.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini Scenario -->
+  <div class="card">
+    <div class="card-label">Mini Scenario</div>
+    <div class="scenario-text">
+      Hey team,<br><br>
+      Dropping this here async since I know everyone's heads-down today.<br><br>
+      <span class="pattern-mark">Just to make sure we're aligned</span> — the plan is to freeze the feature list for the June release by end of day Thursday. Anything not in the doc by then gets pushed to July.<br><br>
+      <span class="pattern-mark">I'll leave a comment here so we have a record of</span> this decision. If anyone has blockers or wants to flag something for the cut, please reply in thread by Wednesday noon.<br><br>
+      <span class="pattern-mark">No need to jump on a call</span> — here's the context: this is just a scope lock, not a scope cut. Everything on the backlog stays prioritized, we're just being clear about what ships when.<br><br>
+      We have good <span class="word-mark">alignment</span> on the big picture — let's keep the momentum going.<br><br>
+      Suki
+    </div>
+  </div>
+
+  <!-- Quick Tip -->
+  <div class="card">
+    <div class="card-label">Quick Tip</div>
+    <span class="tip-icon">💬</span>
+    <div class="tip-text">
+      异步沟通的核心是"减少来回"。每次发消息前问自己：对方看完之后还需要问我什么？把那个问题的答案也一起写进去。这叫 <em>front-loading context</em>（提前给足背景），是高效远程协作最重要的习惯之一。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
