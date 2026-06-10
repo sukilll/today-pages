@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work English · 2026-06-10</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f13;
+    color: #e8e6f0;
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+  }
+  .container { max-width: 560px; margin: 0 auto; }
+  .header { margin-bottom: 32px; }
+  .header .date { font-size: 12px; color: #6b6880; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 22px; font-weight: 600; color: #f0eeff; letter-spacing: -0.02em; }
+  .header .theme-badge { display: inline-block; margin-top: 10px; padding: 4px 10px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 20px; font-size: 12px; color: #a78bfa; letter-spacing: 0.03em; }
+  .card { background: #17161e; border: 1px solid #2a2836; border-radius: 18px; padding: 24px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent); }
+  .card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6880; margin-bottom: 14px; }
+  .word-main { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .word { font-size: 32px; font-weight: 700; color: #f0eeff; letter-spacing: -0.03em; }
+  .pronunciation { font-size: 14px; color: #6b6880; font-style: italic; }
+  .word-zh { font-size: 13px; color: #a78bfa; margin-bottom: 14px; margin-top: 2px; }
+  .definition { font-size: 14px; color: #b8b4cc; line-height: 1.6; margin-bottom: 16px; padding: 12px 14px; background: rgba(255,255,255,0.03); border-radius: 10px; border-left: 2px solid rgba(139,92,246,0.4); }
+  .examples { display: flex; flex-direction: column; gap: 8px; }
+  .example { font-size: 13px; color: #9d99b3; line-height: 1.6; padding-left: 14px; position: relative; }
+  .example::before { content: '"'; position: absolute; left: 0; color: #4a4660; font-size: 16px; line-height: 1.4; }
+  .highlight { color: #c4b5fd; font-style: italic; }
+  .pattern-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #1f1d2a; }
+  .pattern-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .pattern-template { font-size: 16px; font-weight: 600; color: #e0dbf5; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .pattern-context { display: inline-block; font-size: 11px; color: #7c6fa0; background: rgba(124,111,160,0.1); border-radius: 6px; padding: 2px 8px; margin-bottom: 10px; }
+  .pattern-zh { font-size: 12px; color: #6b6880; margin-bottom: 10px; }
+  .scenario-text { font-size: 14px; color: #b8b4cc; line-height: 1.8; font-style: italic; }
+  .word-mark { color: #c4b5fd; font-style: normal; font-weight: 600; background: rgba(196,181,253,0.1); border-radius: 4px; padding: 0 3px; }
+  .pattern-mark { color: #86efac; font-style: normal; background: rgba(134,239,172,0.08); border-radius: 4px; padding: 0 3px; }
+  .tip-text { font-size: 14px; color: #b8b4cc; line-height: 1.7; }
+  .tip-icon { font-size: 20px; margin-bottom: 10px; display: block; }
+  .card.word-card::after { content: ''; position: absolute; top: -60px; right: -60px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%); pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="date">Wednesday · June 10, 2026</div>
+    <h1>Work English · Day 75</h1>
+    <span class="theme-badge">Meetings &amp; Calls</span>
+  </div>
+
+  <!-- Word of the Day -->
+  <div class="card word-card">
+    <div class="card-label">Word of the Day</div>
+    <div class="word-main">
+      <span class="word">consensus</span>
+      <span class="pronunciation">/kənˈsensəs/</span>
+    </div>
+    <div class="word-zh">n. 共识；一致意见</div>
+    <div class="definition">A general agreement reached by a group after discussion. When a team reaches consensus, everyone may not be thrilled, but they can all commit to moving forward together.</div>
+    <div class="examples">
+      <div class="example">We spent 20 minutes debating the approach, but eventually reached a <span class="highlight">consensus</span> to go with the simpler solution.</div>
+      <div class="example">There's no <span class="highlight">consensus</span> yet on the release date — let's put it on the agenda for tomorrow's sync.</div>
+    </div>
+  </div>
+
+  <!-- Sentence Patterns -->
+  <div class="card">
+    <div class="card-label">Sentence Patterns</div>
+
+    <div class="pattern-item">
+      <div class="pattern-template">"Can we get to a consensus on ___ by end of this call?"</div>
+      <span class="pattern-context">会议推进 · 决策收尾</span>
+      <div class="pattern-zh">我们能在这次会议结束前就……达成共识吗？</div>
+      <div class="examples">
+        <div class="example">Can we get to a consensus on the MVP scope by end of this call?</div>
+        <div class="example">Can we get to a consensus on who owns this before we wrap up?</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-template">"I want to make sure we're aligned on ___ before we move on."</div>
+      <span class="pattern-context">会议对齐 · 避免误解</span>
+      <div class="pattern-zh">在继续之前，我想确认大家对……的理解是一致的。</div>
+      <div class="examples">
+        <div class="example">I want to make sure we're aligned on the success metrics before we move on.</div>
+        <div class="example">I want to make sure we're aligned on the timeline before we move on to resourcing.</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-template">"Let's timebox this to ___ minutes and then make a call."</div>
+      <span class="pattern-context">会议效率 · 时间管理</span>
+      <div class="pattern-zh">我们把这个话题限时……分钟，然后做决定。</div>
+      <div class="examples">
+        <div class="example">Let's timebox this to five minutes and then make a call on the direction.</div>
+        <div class="example">We've been going back and forth — let's timebox this to ten minutes and then make a call.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini Scenario -->
+  <div class="card">
+    <div class="card-label">Mini Scenario</div>
+    <div class="scenario-text">
+      The team has been debating two different approaches to the onboarding flow for the past 15 minutes.
+      Sarah finally says: "<span class="pattern-mark">Let's timebox this to five more minutes and then make a call</span> — we can't keep going in circles."
+      After a quick round of feedback, the group still seems split.
+      Mark steps in: "<span class="pattern-mark">I want to make sure we're aligned on</span> the core problem we're solving before we pick a solution."
+      That reframe helps — and within a few minutes, the team reaches <span class="word-mark">consensus</span> on the simpler approach, with a note to revisit after the first round of user testing.
+    </div>
+  </div>
+
+  <!-- Quick Tip -->
+  <div class="card">
+    <div class="card-label">Quick Tip</div>
+    <span class="tip-icon">💡</span>
+    <div class="tip-text">
+      In English meetings, "consensus" doesn't mean everyone is 100% happy — it means everyone can live with the decision and commit to it. A useful phrase to signal this is: <strong style="color:#c4b5fd">"I can live with that."</strong> It's honest, collaborative, and moves things forward without pretending there's full enthusiasm. Much more natural than saying "I agree" when you don't fully agree.
+    </div>
+  </div>
+</div>
+</body>
+</html>
