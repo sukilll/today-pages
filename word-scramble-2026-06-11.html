@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Scramble · 2026-06-11</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f13;
+    color: #e8e6f0;
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .game { max-width: 480px; width: 100%; }
+  .game-header { text-align: center; margin-bottom: 32px; }
+  .game-header h1 { font-size: 20px; font-weight: 700; color: #f0eeff; margin-bottom: 4px; }
+  .game-header .subtitle { font-size: 12px; color: #6b6880; }
+  .score-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 12px 16px; background: #17161e; border: 1px solid #2a2836; border-radius: 12px; }
+  .score-label { font-size: 11px; color: #6b6880; text-transform: uppercase; letter-spacing: 0.08em; }
+  .score-value { font-size: 22px; font-weight: 700; color: #c4b5fd; }
+  .progress { font-size: 13px; color: #6b6880; }
+  .card { background: #17161e; border: 1px solid #2a2836; border-radius: 18px; padding: 28px 24px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent); }
+  .hint { font-size: 12px; color: #7c6fa0; margin-bottom: 16px; text-align: center; }
+  .scrambled { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; min-height: 52px; }
+  .letter-btn { width: 44px; height: 44px; background: #1f1d2a; border: 1px solid #3a3650; border-radius: 10px; color: #e0dbf5; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
+  .letter-btn:hover { background: rgba(139,92,246,0.2); border-color: #8b5cf6; }
+  .letter-btn.used { opacity: 0.2; cursor: default; pointer-events: none; }
+  .answer-area { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; min-height: 52px; margin-bottom: 20px; }
+  .answer-slot { width: 44px; height: 44px; background: rgba(139,92,246,0.08); border: 1px dashed #3a3650; border-radius: 10px; color: #c4b5fd; font-size: 18px; font-weight: 600; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; }
+  .answer-slot.filled { background: rgba(139,92,246,0.15); border-color: #8b5cf6; border-style: solid; }
+  .answer-slot.correct { background: rgba(134,239,172,0.15); border-color: #86efac; color: #86efac; border-style: solid; }
+  .answer-slot.wrong { background: rgba(248,113,113,0.15); border-color: #f87171; color: #f87171; border-style: solid; }
+  .actions { display: flex; gap: 10px; }
+  .btn { flex: 1; padding: 12px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
+  .btn-primary { background: #8b5cf6; color: white; }
+  .btn-primary:hover { background: #7c3aed; }
+  .btn-secondary { background: #1f1d2a; color: #9d99b3; border: 1px solid #2a2836; }
+  .btn-secondary:hover { background: #2a2836; }
+  .feedback { text-align: center; font-size: 14px; font-weight: 600; margin-bottom: 12px; min-height: 20px; }
+  .feedback.correct { color: #86efac; }
+  .feedback.wrong { color: #f87171; }
+  .combo { text-align: center; font-size: 12px; color: #a78bfa; min-height: 18px; margin-bottom: 8px; }
+  .result { text-align: center; padding: 32px 24px; }
+  .result h2 { font-size: 28px; font-weight: 700; color: #f0eeff; margin-bottom: 8px; }
+  .result .final-score { font-size: 48px; font-weight: 800; color: #c4b5fd; margin: 16px 0; }
+  .result .message { font-size: 14px; color: #9d99b3; line-height: 1.6; }
+  .word-list { margin-top: 20px; text-align: left; }
+  .word-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1f1d2a; font-size: 13px; }
+  .word-item:last-child { border-bottom: none; }
+  .word-item .w { color: #c4b5fd; font-weight: 600; min-width: 100px; }
+  .word-item .zh { color: #6b6880; }
+  .word-item .status { margin-left: auto; font-size: 16px; }
+</style>
+</head>
+<body>
+<div class="game">
+  <div class="game-header">
+    <h1>🔤 Word Scramble</h1>
+    <div class="subtitle">June 11, 2026 · Code Review &amp; Technical Feedback</div>
+  </div>
+  <div id="app"></div>
+</div>
+<script>
+const words = [
+  { word: "caveat", zh: "注意事项", hint: "n. 警告；附加条件" },
+  { word: "brittle", zh: "脆弱的", hint: "adj. 不够健壮的（代码）" },
+  { word: "refactor", zh: "重构", hint: "v. 重新整理代码结构" },
+  { word: "regression", zh: "回归问题", hint: "n. 改动引入的新 bug" },
+  { word: "verbose", zh: "冗长的", hint: "adj. 代码/注释过于啰嗦" },
+  { word: "idiomatic", zh: "符合惯用法的", hint: "adj. 地道的、符合语言风格的" }
+];
+
+let current = 0, score = 0, combo = 0, results = [];
+let scrambled = [], chosen = [], usedIdx = [];
+
+function scrambleWord(w) {
+  let arr = w.split('');
+  do { arr.sort(() => Math.random() - 0.5); } while (arr.join('') === w);
+  return arr;
+}
+
+function render() {
+  const app = document.getElementById('app');
+  if (current >= words.length) { renderResult(app); return; }
+  const { word, zh, hint } = words[current];
+  scrambled = scrambleWord(word);
+  chosen = []; usedIdx = [];
+  app.innerHTML = `
+    <div class="score-bar">
+      <div><div class="score-label">Score</div><div class="score-value" id="score">${score}</div></div>
+      <div class="progress">${current + 1} / ${words.length}</div>
+      <div><div class="score-label">Combo</div><div class="score-value" id="combo-val" style="color:#a78bfa">${combo > 1 ? 'x' + combo : '-'}</div></div>
+    </div>
+    <div class="card">
+      <div class="hint">${hint} · ${zh}</div>
+      <div class="combo" id="combo-msg"></div>
+      <div class="scrambled" id="scrambled">${scrambled.map((l,i) => `<button class="letter-btn" onclick="pick(${i})">${l.toUpperCase()}</button>`).join('')}</div>
+      <div class="answer-area" id="answer"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="reset()">重置</button>
+        <button class="btn btn-primary" onclick="check()">确认</button>
+      </div>
+    </div>
+  `;
+}
+
+function pick(i) {
+  if (usedIdx.includes(i)) return;
+  usedIdx.push(i);
+  chosen.push({ letter: scrambled[i], idx: i });
+  updateDisplay();
+}
+
+function unpick(ci) {
+  const item = chosen[ci];
+  usedIdx = usedIdx.filter(x => x !== item.idx);
+  chosen.splice(ci, 1);
+  updateDisplay();
+}
+
+function updateDisplay() {
+  const word = words[current].word;
+  document.getElementById('scrambled').innerHTML = scrambled.map((l,i) =>
+    `<button class="letter-btn${usedIdx.includes(i) ? ' used' : ''}" onclick="pick(${i})">${l.toUpperCase()}</button>`
+  ).join('');
+  document.getElementById('answer').innerHTML = Array.from({length: word.length}, (_,i) => {
+    const c = chosen[i];
+    return `<div class="answer-slot${c ? ' filled' : ''}" onclick="${c ? 'unpick(' + i + ')' : ''}">${c ? c.letter.toUpperCase() : ''}</div>`;
+  }).join('');
+}
+
+function reset() { chosen = []; usedIdx = []; updateDisplay(); document.getElementById('feedback').textContent = ''; }
+
+function check() {
+  const word = words[current].word;
+  if (chosen.length < word.length) {
+    document.getElementById('feedback').textContent = '还没填完哦';
+    document.getElementById('feedback').className = 'feedback wrong';
+    return;
+  }
+  const answer = chosen.map(c => c.letter).join('').toLowerCase();
+  const slots = document.querySelectorAll('.answer-slot');
+  if (answer === word) {
+    slots.forEach(s => s.className = 'answer-slot correct');
+    combo++;
+    const bonus = combo > 1 ? (combo - 1) * 10 : 0;
+    score += 10 + bonus;
+    document.getElementById('feedback').textContent = bonus > 0 ? `✓ 正确！连击 +${bonus}` : '✓ 正确！';
+    document.getElementById('feedback').className = 'feedback correct';
+    if (combo > 1) document.getElementById('combo-msg').textContent = `🔥 ${combo} 连击！`;
+    results.push({ word, zh: words[current].zh, ok: true });
+  } else {
+    slots.forEach(s => s.className = 'answer-slot wrong');
+    combo = 0;
+    document.getElementById('feedback').textContent = `✗ 正确答案：${word}`;
+    document.getElementById('feedback').className = 'feedback wrong';
+    results.push({ word, zh: words[current].zh, ok: false });
+  }
+  document.getElementById('score').textContent = score;
+  const actions = document.querySelector('.actions');
+  if (actions) {
+    actions.innerHTML = `<button class="btn btn-primary" style="width:100%" onclick="current++;render()">下一题 →</button>`;
+  }
+}
+
+function renderResult(app) {
+  const pct = Math.round(results.filter(r => r.ok).length / words.length * 100);
+  const msg = pct === 100 ? '完美！全部答对 🎉' : pct >= 60 ? '不错！继续加油 💪' : '再练练，你可以的 📚';
+  app.innerHTML = `
+    <div class="card result">
+      <h2>游戏结束</h2>
+      <div class="final-score">${score}</div>
+      <div class="message">${msg}<br>${results.filter(r=>r.ok).length}/${words.length} 答对</div>
+      <div class="word-list">${results.map(r => `<div class="word-item"><span class="w">${r.word}</span><span class="zh">${r.zh}</span><span class="status">${r.ok ? '✅' : '❌'}</span></div>`).join('')}</div>
+      <button class="btn btn-primary" style="margin-top:20px;width:100%" onclick="current=0;score=0;combo=0;results=[];render()">再来一局</button>
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
