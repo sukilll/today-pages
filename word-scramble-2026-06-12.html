@@ -53,7 +53,7 @@
   .word-list { margin-top: 20px; text-align: left; }
   .word-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1f1d2a; font-size: 13px; }
   .word-item:last-child { border-bottom: none; }
-  .word-item .w { color: #c4b5fd; font-weight: 600; min-width: 110px; }
+  .word-item .w { color: #c4b5fd; font-weight: 600; min-width: 100px; }
   .word-item .zh { color: #6b6880; }
   .word-item .status { margin-left: auto; font-size: 16px; }
 </style>
@@ -68,12 +68,12 @@
 </div>
 <script>
 const words = [
+  { word: "regression", zh: "回归问题；功能退化", hint: "n. 新改动破坏了原有功能" },
+  { word: "brittle", zh: "脆弱的（代码）", hint: "adj. 容易在边界情况下崩溃" },
+  { word: "refactor", zh: "重构", hint: "v. 改善代码结构而不改变功能" },
   { word: "verbose", zh: "冗长的", hint: "adj. 代码或表达过于啰嗦" },
-  { word: "brittle", zh: "脆弱的", hint: "adj. 容易出错、不稳定的代码" },
-  { word: "refactor", zh: "重构", hint: "v. 在不改变功能的前提下改善代码结构" },
-  { word: "regression", zh: "回归问题", hint: "n. 新改动导致原有功能出现 bug" },
-  { word: "idiomatic", zh: "符合惯用法的", hint: "adj. 写法地道、符合语言风格" },
-  { word: "opinionated", zh: "有强烈设计倾向的", hint: "adj. 框架或工具对使用方式有明确主张" }
+  { word: "caveat", zh: "注意事项；警告", hint: "n. 需要特别留意的附加条件" },
+  { word: "idiomatic", zh: "符合惯用法的", hint: "adj. 写法地道、符合语言风格" }
 ];
 
 let current = 0, score = 0, combo = 0, results = [];
