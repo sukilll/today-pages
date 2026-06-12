@@ -55,14 +55,14 @@
   <div class="card word-card">
     <div class="card-label">Word of the Day</div>
     <div class="word-main">
-      <span class="word">verbose</span>
-      <span class="pronunciation">/vɜːrˈboʊs/</span>
+      <span class="word">regression</span>
+      <span class="pronunciation">/rɪˈɡreʃ.ən/</span>
     </div>
-    <div class="word-zh">冗长的；啰嗦的</div>
-    <div class="definition">Using more words or code than necessary to express something. In tech contexts, it often describes code that is overly long-winded when a simpler version would do the same job.</div>
+    <div class="word-zh">回归问题；功能退化</div>
+    <div class="definition">A regression is a bug introduced by a new change that breaks something that was previously working. In code review, catching regressions early is one of the most important goals.</div>
     <div class="examples">
-      <div class="example">This function is a bit <span class="highlight">verbose</span> — we could replace those 20 lines with a single list comprehension.</div>
-      <div class="example">The error message is too <span class="highlight">verbose</span> for end users; let's show a cleaner summary instead.</div>
+      <div class="example">This PR looks good, but I want to make sure it doesn't introduce a <span class="highlight">regression</span> in the login flow.</div>
+      <div class="example">We caught a <span class="highlight">regression</span> in the notification system after the last deploy — rolling back now.</div>
     </div>
   </div>
 
@@ -71,32 +71,32 @@
     <div class="card-label">Sentence Patterns</div>
 
     <div class="pattern-item">
-      <div class="pattern-template">"Could we refactor this to ___?"</div>
-      <span class="pattern-context">代码评审 · PR 评论</span>
-      <div class="pattern-zh">能否重构成……？（提出改进建议，语气委婉）</div>
+      <div class="pattern-template">"Did you run the tests to check for regressions?"</div>
+      <span class="pattern-context">代码审查 · PR 评论</span>
+      <div class="pattern-zh">你跑测试检查有没有回归问题了吗？</div>
       <div class="examples">
-        <div class="example">Could we refactor this to use a helper function so it's easier to test?</div>
-        <div class="example">Could we refactor this to avoid the nested loops — it's getting hard to follow?</div>
+        <div class="example">Did you run the tests to check for regressions? The auth module is pretty sensitive.</div>
+        <div class="example">Before we merge, did you run the tests to check for regressions in the payment flow?</div>
       </div>
     </div>
 
     <div class="pattern-item">
-      <div class="pattern-template">"Have you considered ___?"</div>
-      <span class="pattern-context">代码评审 · 技术讨论</span>
-      <div class="pattern-zh">你有没有考虑过……？（引导对方思考替代方案）</div>
+      <div class="pattern-template">"This could be a regression — ___ used to work differently."</div>
+      <span class="pattern-context">代码审查 · Bug 讨论</span>
+      <div class="pattern-zh">这可能是个回归问题——之前…的行为不是这样的</div>
       <div class="examples">
-        <div class="example">Have you considered using a map here instead of a for-loop? It'd be more readable.</div>
-        <div class="example">Have you considered what happens when the list is empty? That edge case might cause a crash.</div>
+        <div class="example">This could be a regression — the dropdown used to work differently before the refactor.</div>
+        <div class="example">This could be a regression — error messages used to be localized, but now they're in English only.</div>
       </div>
     </div>
 
     <div class="pattern-item">
-      <div class="pattern-template">"This might be a bit brittle when ___."</div>
-      <span class="pattern-context">代码评审 · 稳定性反馈</span>
-      <div class="pattern-zh">在某种情况下这段代码可能不够稳定</div>
+      <div class="pattern-template">"Can we add a test to prevent this regression from coming back?"</div>
+      <span class="pattern-context">代码审查 · 测试覆盖</span>
+      <div class="pattern-zh">能加个测试防止这个问题以后再出现吗？</div>
       <div class="examples">
-        <div class="example">This might be a bit brittle when the API returns a null value — worth adding a guard.</div>
-        <div class="example">This might be a bit brittle when we scale to thousands of records; let's add a limit.</div>
+        <div class="example">Can we add a test to prevent this regression from coming back? It's the third time we've hit this.</div>
+        <div class="example">Can we add a test to prevent this regression from coming back before we close the ticket?</div>
       </div>
     </div>
   </div>
@@ -105,8 +105,9 @@
   <div class="card">
     <div class="card-label">Mini Scenario</div>
     <div class="scenario-text">
-      You're reviewing a teammate's PR and want to leave helpful, constructive comments.<br><br>
-      "Hey, overall this looks good! One thing — the config parser is a little <span class="word-mark">verbose</span>; there are about 30 lines that could be condensed. <span class="pattern-mark">Could we refactor this to</span> use a dictionary comprehension instead? Also, <span class="pattern-mark">have you considered</span> what happens when a required key is missing from the config file? <span class="pattern-mark">This might be a bit brittle when</span> someone runs this in a fresh environment without all the defaults set."
+      You're reviewing a teammate's PR that touches the search feature. You notice something off in the results ranking.
+      <br><br>
+      "Hey, I think <span class="word-mark">regression</span> might be happening here — the relevance sorting used to prioritize exact matches, but now it seems to rank by recency instead. <span class="pattern-mark">This could be a regression — the ranking logic used to work differently</span> before the indexing refactor. <span class="pattern-mark">Can we add a test to prevent this regression from coming back?</span> Maybe a snapshot test on the top 3 results for a known query? <span class="pattern-mark">Did you run the tests to check for regressions</span> in the search module specifically?"
     </div>
   </div>
 
@@ -115,7 +116,7 @@
     <div class="card-label">Quick Tip</div>
     <span class="tip-icon">💡</span>
     <div class="tip-text">
-      In English code reviews, framing feedback as a question ("Could we…?", "Have you considered…?") is much softer than a direct command ("Change this to…"). It signals collaboration rather than criticism — the reviewer is thinking alongside the author, not judging them. This is especially important in async PR comments where tone is easy to misread. When you do want to be direct, add a softener like "just a nit" or "minor thing" to signal the issue isn't blocking.
+      In English code reviews, framing a potential regression as a question ("Did you check for regressions?") rather than a statement ("This is a regression") sounds more collaborative and less accusatory. It gives your teammate a chance to say "yes, I tested it" — and if they didn't, they'll realize it themselves. This tone shift makes a big difference in team culture, especially in async reviews where there's no body language to soften the message.
     </div>
   </div>
 </div>
